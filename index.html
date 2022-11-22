@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container" id="app" v-cloak>
+    <div class="card">
+      <h1>{{title}}</h1>
+      <h2 class="subtitle">количество заметок: {{notes.length}}</h2>
+      <div class="form-control">
+        <input @keypress.enter="newTask" v-model="inputValue" :placeholder="plchldr" class="input" type="text">
+        <button @click="newTask" class="btn primary">добавить</button>
+        <ul class="list" v-if="notes.length !== 0">
+          <li class="item" v-for="(myTask, i) in notes">
+            <p>{{myTask}}</p>
+            <button @click="deleteTask(i)" class="btn danger">X</button>
+          </li>
+        </ul>
+        <button class="btn delete" v-if="notes.length >= 1" @click="deleteAll">очистить список</button>
+        <p class="desc" v-else>добавьте новую заметку :)</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
